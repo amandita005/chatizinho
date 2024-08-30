@@ -9,7 +9,6 @@ let listarSalas = async () => {
 let buscarSala = async (idsala) => {
 
     return await db.findOne("salas", idsala);
-
 };  
 
 let atualizarMensagens = async (sala) => {
@@ -31,15 +30,17 @@ let buscarMensagens = async (idsala, timestamp) => {
     
 }
 
+
 let sairSala = async (iduser) => {
   let user = await db.findOne("usuarios", iduser);
+  console.log(iduser)
 
-  if (user && user.sala) {
+  if (user) {
       user.sala = null;  
       return await db.updateOne("usuarios", user, { _id: user._id });
   }
 
-  return null;
+  return false;
 };
 
 

@@ -65,4 +65,10 @@ app.use("/sala/listar", router.get("/sala/listar", async (req, res) => {
     res.status(200).send(resp);
 }))
 
+app.use("/sala/sair", router.get("/sala/sair", async (req, res) => {
+    const salaController = require("./controllers/salaController");
+    let resp = await salaController.sairSala(req.query.idUser)
+    res.status(200).send(resp);
+}))
+
 module.exports = app;

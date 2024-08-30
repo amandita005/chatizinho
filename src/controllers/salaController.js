@@ -46,3 +46,27 @@ exports.buscarMensagens = async (idsala, timestamp) => {
       "msgs":mensagens
     };
 };
+
+exports.sairSala = async (req, res) => {
+  try {
+    const { iduser } = req.params;
+    console.log(iduser)
+
+    let user = await Usuario.findById(iduser);
+
+    if (user) {
+      user.sala = null;  
+      await user.save();
+
+      return res.status(200).json({
+        message: 'Usuário saiu da sala com sucesso.',
+        user
+      });
+    }
+
+    return res.status(404).json({ message: 'Usuário não encontrado.' });
+  } catch (error) {
+    console.error("Erro ao tentar remover o usuário da sala:", error);
+    return res.status(500).json({ message: 'Erro ao tentar remover o usuário da sala.' });
+  }
+};
