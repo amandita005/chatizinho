@@ -40,7 +40,6 @@ let sairSala = async (iduser) => {
   }
 
   return null;
-  return false;
 };
 
 
