@@ -1,3 +1,3 @@
-import app from '../srvc/api';
+import app from '../src/api';
 
 export default app;
