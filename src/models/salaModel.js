@@ -33,13 +33,13 @@ let buscarMensagens = async (idsala, timestamp) => {
 
 let sairSala = async (iduser) => {
   let user = await db.findOne("usuarios", iduser);
-  console.log(iduser)
 
-  if (user) {
+  if (user && user.sala) {
       user.sala = null;  
       return await db.updateOne("usuarios", user, { _id: user._id });
   }
 
+  return null;
   return false;
 };
 
